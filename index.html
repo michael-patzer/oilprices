@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oil Prices Live | Real-Time Crude Oil, Natural Gas & Fuel Prices | iOS App</title>
+  <meta name="description" content="Track live WTI crude, Brent crude, natural gas, gasoline, and ethanol prices in 28 currencies. Get real-time energy price alerts. Free iOS app.">
+  <meta name="keywords" content="oil price live, crude oil price, wti crude oil price, brent crude oil price, natural gas price, gasoline price, oil price today, crude oil price today, oil price alert, energy prices live, oil futures price, brent crude price today, wti oil price today, oil price per barrel, natural gas price today, fuel price tracker, oil price app, energy price app, urals crude price, oil spreads, contango backwardation, oil price widget, crude oil tracker, petroleum prices">
+  <meta name="author" content="Patzer LLC">
+  <meta name="robots" content="index, follow">
+  <meta name="apple-itunes-app" content="app-id=6759874542">
+  <link rel="canonical" href="https://oilpriceslive.com/">
+  <link rel="icon" href="images/app-icon.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://oilpriceslive.com/">
+  <meta property="og:image" content="https://oilpriceslive.com/images/app-icon.png">
+  <meta property="og:title" content="Oil Prices Live | Real-Time Crude Oil, Natural Gas & Fuel Prices">
+  <meta property="og:description" content="Track live WTI crude, Brent crude, natural gas, gasoline, and ethanol prices in 28 currencies with real-time alerts. Free iOS app.">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://oilpriceslive.com/">
+  <meta property="twitter:image" content="https://oilpriceslive.com/images/app-icon.png">
+  <meta property="twitter:title" content="Oil Prices Live | Real-Time Crude Oil, Natural Gas & Fuel Prices">
+  <meta property="twitter:description" content="Track live WTI crude, Brent crude, natural gas, gasoline, and ethanol prices in 28 currencies with real-time alerts. Free iOS app.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Oil Prices Live",
+    "operatingSystem": "iOS",
+    "applicationCategory": "FinanceApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD"
+    },
+    "screenshot": [
+      "https://oilpriceslive.com/images/screenshot1.png",
+      "https://oilpriceslive.com/images/screenshot2.png",
+      "https://oilpriceslive.com/images/screenshot3.png"
+    ],
+    "url": "https://apps.apple.com/app/apple-store/id6759874542",
+    "description": "Track live WTI crude, Brent crude, Urals crude, natural gas, gasoline, and ethanol prices in 28 currencies. Get real-time energy price alerts and spreads.",
+    "applicationSubCategory": "Finance",
+    "datePublished": "2026-03-09"
+  }
+  </script>
+
+  <style>
+    :root {
+      --primary: #4A90D9;
+      --primary-light: #6FB1F6;
+      --primary-dark: #2E6DB4;
+      --secondary: #1DB954;
+      --dark: #15181E;
+      --dark-surface: #1A1F2E;
+      --dark-card: #222838;
+      --white: #ffffff;
+      --gray-text: #94A3B8;
+      --light-text: #E2E8F0;
+      --rounded: 16px;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background-color: rgba(21, 24, 30, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(74, 144, 217, 0.15);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      height: 70px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 44px;
+      border-radius: 10px;
+    }
+
+    .logo h1 {
+      font-size: 1.1rem;
+      margin: 0;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      transition: color 0.2s ease;
+      color: var(--gray-text);
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-light);
+    }
+
+    .app-cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.4rem;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(74, 144, 217, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(74, 144, 217, 0.1);
+      color: var(--primary-light);
+      border: 1px solid rgba(74, 144, 217, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(74, 144, 217, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .get-app-btn, .qr-button, .qr-button-top {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.4rem;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: var(--white);
+      border-radius: 100px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .get-app-btn:hover, .qr-button:hover, .qr-button-top:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(74, 144, 217, 0.3);
+    }
+
+    /* QR Popup */
+    .qr-popup {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      background-color: var(--white);
+      border-radius: var(--rounded);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 10;
+      width: 180px;
+      text-align: center;
+    }
+
+    .qr-popup-top {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--white);
+      border-radius: var(--rounded);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 10;
+      width: 180px;
+      text-align: center;
+    }
+
+    @media (hover: hover) {
+      .get-app-btn:hover .qr-popup,
+      .qr-button:hover .qr-popup,
+      .qr-button-top:hover .qr-popup-top {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    @media (hover: none) {
+      .qr-popup, .qr-popup-top {
+        display: none !important;
+      }
+    }
+
+    .qr-popup img, .qr-popup-top img {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 0.5rem;
+    }
+
+    .qr-popup p, .qr-popup-top p {
+      color: var(--dark);
+      font-size: 0.875rem;
+      margin-bottom: 0;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      color: var(--white);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 10rem 0 6rem;
+      background: linear-gradient(160deg, #0D1017, #15181E 40%, #1A1F2E);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 150%;
+      background: radial-gradient(ellipse, rgba(74, 144, 217, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero h1 {
+      margin-bottom: 1.5rem;
+      font-size: 3.2rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .hero h1 .accent-text {
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--gray-text);
+      line-height: 1.6;
+    }
+
+    .rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      background: rgba(74, 144, 217, 0.12);
+      padding: 8px 16px;
+      border-radius: 100px;
+      color: var(--primary-light);
+    }
+
+    .rating i {
+      color: var(--primary);
+    }
+
+    .hero-benefits {
+      list-style: none;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-benefits li {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.05rem;
+      color: var(--light-text);
+    }
+
+    .hero-benefits i {
+      color: var(--primary-light);
+      font-size: 1rem;
+    }
+
+    .hero-image {
+      flex: 1;
+      position: relative;
+      text-align: center;
+      max-width: 320px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Energy Ticker */
+    .energy-ticker {
+      background: var(--dark-surface);
+      border-top: 1px solid rgba(74, 144, 217, 0.1);
+      border-bottom: 1px solid rgba(74, 144, 217, 0.1);
+      padding: 1rem 0;
+      overflow: hidden;
+    }
+
+    .ticker-content {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--light-text);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .ticker-item .commodity-name {
+      color: var(--gray-text);
+    }
+
+    .ticker-item .commodity-icon {
+      font-size: 1.1rem;
+    }
+
+    /* How It Works */
+    .how-it-works {
+      padding: 6rem 0;
+      background-color: var(--white);
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 1rem;
+      font-size: 2.2rem;
+      color: var(--dark);
+    }
+
+    .section-heading p {
+      font-size: 1.1rem;
+      color: var(--gray-text);
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .step {
+      flex: 1 1 280px;
+      text-align: center;
+      background-color: var(--white);
+      padding: 2.5rem 2rem;
+      border-radius: var(--rounded);
+      border: 1px solid #F1F5F9;
+      transition: all 0.3s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .step h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .step p {
+      color: var(--gray-text);
+      font-size: 0.95rem;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 6rem 0;
+      background: linear-gradient(160deg, #0D1017, #15181E 40%, #1A1F2E);
+      color: var(--white);
+    }
+
+    .features .section-heading h2 {
+      color: var(--white);
+    }
+
+    .features .section-heading p {
+      color: var(--gray-text);
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(74, 144, 217, 0.1);
+      padding: 2rem;
+      border-radius: var(--rounded);
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(74, 144, 217, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(74, 144, 217, 0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.4rem;
+      color: var(--primary-light);
+    }
+
+    .feature-item h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.15rem;
+      color: var(--white);
+    }
+
+    .feature-item p {
+      font-size: 0.95rem;
+      color: var(--gray-text);
+      line-height: 1.6;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 6rem 0;
+      background-color: #FAFBFC;
+    }
+
+    .testimonials-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testimonial {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: var(--rounded);
+      border: 1px solid #F1F5F9;
+      text-align: left;
+    }
+
+    .testimonial-content {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: #64748B;
+      line-height: 1.7;
+    }
+
+    .testimonial-stars {
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-user {
+      display: flex;
+      align-items: center;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      margin-right: 12px;
+      background: linear-gradient(135deg, rgba(74, 144, 217, 0.1), rgba(74, 144, 217, 0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .testimonial-title {
+      font-size: 0.85rem;
+      color: #94A3B8;
+    }
+
+    .users-count {
+      margin-top: 3rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: rgba(74, 144, 217, 0.08);
+      padding: 12px 24px;
+      border-radius: 100px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    /* Screenshots */
+    .screenshots {
+      padding: 6rem 0;
+      background: var(--white);
+    }
+
+    .screenshots-container {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .screenshots-slider {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding: 1.5rem 0;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .screenshots-slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .screenshot-item {
+      flex: 0 0 auto;
+      width: 270px;
+      transition: transform 0.3s ease;
+    }
+
+    .screenshot-item:hover {
+      transform: scale(1.03);
+    }
+
+    .screenshot-item img {
+      width: 100%;
+      border-radius: var(--rounded);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .screenshots-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .screenshot-nav-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: rgba(74, 144, 217, 0.08);
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(74, 144, 217, 0.15);
+    }
+
+    .screenshot-nav-btn:hover {
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: var(--white);
+    }
+
+    .swipe-hint {
+      display: none;
+      text-align: center;
+      color: #94A3B8;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    /* SMS Section */
+    .sms-section {
+      background: linear-gradient(160deg, #0D1017, #15181E);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      margin: 3rem 0;
+      text-align: center;
+    }
+
+    .sms-section h3 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: var(--white);
+    }
+
+    .sms-intro {
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      color: var(--gray-text);
+    }
+
+    .sms-form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sms-form input[type="tel"] {
+      padding: 16px 20px;
+      border: 1px solid rgba(74, 144, 217, 0.2);
+      border-radius: 100px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .sms-form input[type="tel"]::placeholder {
+      color: var(--gray-text);
+    }
+
+    .sms-form input[type="submit"] {
+      padding: 16px;
+      border: none;
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .sms-form input[type="submit"]:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(74, 144, 217, 0.3);
+    }
+
+    .consent-text {
+      margin-top: 10px;
+      font-size: 0.75rem;
+      color: var(--gray-text);
+      text-align: left;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      margin: 3rem 0;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .cta-section h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .cta-section p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section .btn {
+      background: var(--dark);
+      color: var(--primary-light);
+    }
+
+    .cta-section .btn:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-section .qr-popup-top p {
+      color: var(--dark);
+      font-size: 0.875rem;
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 20px 2rem;
+      background: var(--dark);
+      color: var(--white);
+      font-size: 0.9rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      text-align: left;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo img {
+      height: 36px;
+      border-radius: 8px;
+    }
+
+    .footer-logo h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0;
+      color: var(--white);
+    }
+
+    .footer-about p {
+      margin-bottom: 1.5rem;
+      color: var(--gray-text);
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      background-color: rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-text);
+      transition: all 0.2s ease;
+    }
+
+    .social-links a:hover {
+      background-color: var(--primary);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .footer-links h3 {
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      color: var(--white);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links ul li a {
+      color: var(--gray-text);
+      transition: all 0.2s ease;
+      font-size: 0.85rem;
+    }
+
+    .footer-links ul li a:hover {
+      color: var(--primary-light);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--gray-text);
+      font-size: 0.8rem;
+    }
+
+    /* Sticky CTA */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(21, 24, 30, 0.97);
+      backdrop-filter: blur(12px);
+      padding: 12px 15px;
+      box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+      text-align: center;
+    }
+
+    .sticky-cta a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+      color: var(--white);
+      border-radius: 100px;
+      font-weight: 600;
+      width: 85%;
+      max-width: 320px;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 992px) {
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text, .hero-image {
+        max-width: 100%;
+      }
+
+      .hero-benefits {
+        display: inline-block;
+        text-align: left;
+      }
+
+      .hero-cta {
+        justify-content: center;
+      }
+
+      .feature-list {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .testimonials-container {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: var(--dark);
+        padding: 1.5rem;
+        flex-direction: column;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .app-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        flex-direction: column;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .ticker-content {
+        gap: 1.5rem;
+      }
+    }
+
+    @media screen and (max-width: 576px) {
+      .section-heading h2 {
+        font-size: 1.5rem;
+      }
+
+      .screenshots-slider {
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding-bottom: 15px;
+      }
+
+      .screenshot-item {
+        scroll-snap-align: center;
+        min-width: 220px;
+      }
+
+      .swipe-hint {
+        display: block;
+      }
+
+      .sticky-cta {
+        display: block;
+      }
+
+      .cta-section, .sms-section {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .hero {
+        padding: 8rem 0 4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="nav-container">
+        <div class="logo">
+          <img src="images/app-icon.png" alt="Oil Prices Live App Icon">
+          <h1>Oil Prices Live</h1>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#screenshots">Screenshots</a></li>
+          </ul>
+        </nav>
+        <div class="app-cta">
+          <a href="javascript:void(0)" onclick="scrollToSMS()" class="btn btn-secondary">Text Me the Link</a>
+          <a href="https://apps.apple.com/app/apple-store/id6759874542?pt=649248&ct=oilpriceslive&mt=8" class="get-app-btn">
+            <i class="fab fa-apple"></i> Download Free
+            <div class="qr-popup">
+              <img src="images/qrcode.png" alt="Scan to download Oil Prices Live from App Store">
+              <p>Scan to download</p>
+            </div>
+          </a>
+        </div>
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> New on the App Store
+          </div>
+          <h1>Live <span class="accent-text">Oil & Energy</span> Prices at Your Fingertips</h1>
+          <p class="hero-tagline">Track real-time crude oil, natural gas, gasoline, and ethanol prices in 28 currencies. Set price alerts and monitor oil spreads instantly.</p>
+          <ul class="hero-benefits">
+            <li><i class="fas fa-bolt"></i> Real-time prices updated every 15 seconds</li>
+            <li><i class="fas fa-bell"></i> Instant price alerts for all energy commodities</li>
+            <li><i class="fas fa-globe"></i> 28 currencies with spread comparisons</li>
+            <li><i class="fas fa-chart-area"></i> Up to 2 years of historical price data</li>
+          </ul>
+          <div class="hero-cta">
+            <a href="https://apps.apple.com/app/apple-store/id6759874542?pt=649248&ct=oilpriceslive&mt=8" class="btn btn-primary qr-button-top">
+              <i class="fab fa-apple"></i> Download Free
+              <div class="qr-popup-top">
+                <img src="images/qrcode.png" alt="Scan to download Oil Prices Live from App Store">
+                <p>Scan to download</p>
+              </div>
+            </a>
+            <a href="javascript:void(0)" onclick="scrollToSMS()" class="btn btn-secondary">Text Me the Link</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="images/screenshot1.png" alt="Oil Prices Live App - Real-time crude oil and energy price tracking">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Energy Ticker -->
+  <div class="energy-ticker">
+    <div class="container">
+      <div class="ticker-content">
+        <div class="ticker-item">
+          <span class="commodity-icon"><i class="fas fa-oil-can"></i></span>
+          <span class="commodity-name">WTI Crude</span>
+        </div>
+        <div class="ticker-item">
+          <span class="commodity-icon"><i class="fas fa-oil-can"></i></span>
+          <span class="commodity-name">Brent Crude</span>
+        </div>
+        <div class="ticker-item">
+          <span class="commodity-icon"><i class="fas fa-oil-can"></i></span>
+          <span class="commodity-name">Urals Crude</span>
+        </div>
+        <div class="ticker-item">
+          <span class="commodity-icon"><i class="fas fa-fire"></i></span>
+          <span class="commodity-name">Natural Gas</span>
+        </div>
+        <div class="ticker-item">
+          <span class="commodity-icon"><i class="fas fa-gas-pump"></i></span>
+          <span class="commodity-name">Gasoline</span>
+        </div>
+        <div class="ticker-item">
+          <span class="commodity-icon"><i class="fas fa-leaf"></i></span>
+          <span class="commodity-name">Ethanol</span>
+        </div>
+        <div class="ticker-item" style="color: var(--primary-light);">
+          6 commodities &middot; 28 currencies &middot; Real-time
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Start Tracking in Seconds</h2>
+        <p>Monitor energy prices effortlessly</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Download</h3>
+          <p>Get the free app from the App Store. No account needed — open and start tracking oil and energy prices instantly.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Customize</h3>
+          <p>Choose your commodities, preferred currency, and set up price alerts for the thresholds that matter to you.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Stay Informed</h3>
+          <p>Get real-time updates every 15 seconds, compare oil spreads, and receive alerts when prices hit your targets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Everything You Need to Track Energy Markets</h2>
+        <p>Professional-grade tools in a beautifully simple interface</p>
+      </div>
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Live Energy Prices</h3>
+          <p>Track WTI Crude, Brent Crude, Urals Crude, Natural Gas, Gasoline, and Ethanol futures with animated price changes updated every 15 seconds for Pro users.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
+          <h3>Oil Spreads Comparison</h3>
+          <p>Compare Brent-WTI, Brent-Urals, and WTI-Urals spreads with dollar and percentage differences. Spot contango and backwardation instantly.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-bell"></i></div>
+          <h3>Smart Price Alerts</h3>
+          <p>Set custom push notifications for any energy commodity. Get alerted instantly when prices cross your target thresholds.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-history"></i></div>
+          <h3>Historical Comparison</h3>
+          <p>Access up to 2 years of price data. Analyze trends and compare historical performance across all energy commodities.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-globe"></i></div>
+          <h3>28 International Currencies</h3>
+          <p>View prices in USD, EUR, GBP, JPY, CNY, and 23 more currencies. Perfect for global energy traders and investors.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-expand"></i></div>
+          <h3>Focus Mode</h3>
+          <p>Distraction-free full-screen monitoring with a clean, dark interface. Perfect for tracking prices during market hours.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-tags"></i></div>
+          <h3>Spot Prices & Spreads</h3>
+          <p>View spot prices alongside futures with contango and backwardation indicators. Understand market structure at a glance.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-share-alt"></i></div>
+          <h3>Share Prices</h3>
+          <p>Export price snapshots as formatted text or images. Share energy market data with colleagues, clients, or social media.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-heading">
+        <h2>What Energy Traders Are Saying</h2>
+        <p>Trusted by oil traders and energy market enthusiasts</p>
+      </div>
+      <div class="testimonials-container">
+        <div class="testimonial">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-content">"Finally, an app that tracks all three major crude benchmarks in one place. The Brent-WTI spread comparison is exactly what I needed. Real-time updates are incredibly fast and the interface is clean."</p>
+          <div class="testimonial-user">
+            <div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <div class="testimonial-name">James R.</div>
+              <div class="testimonial-title">Energy Trader</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-content">"The price alerts are a game-changer for my oil trading. I set alerts for WTI at my target entry points and get notified instantly when it hits. The multi-currency support is great for cross-market analysis."</p>
+          <div class="testimonial-user">
+            <div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <div class="testimonial-name">Alina K.</div>
+              <div class="testimonial-title">Commodities Analyst</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="testimonial-content">"Clean, fast, and comprehensive. Having crude oil, natural gas, and fuel futures all in one place with historical data and spreads is exactly what I needed. The Focus Mode is brilliant for market hours."</p>
+          <div class="testimonial-user">
+            <div class="testimonial-avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <div class="testimonial-name">Michael T.</div>
+              <div class="testimonial-title">Petroleum Industry Professional</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <div class="users-count">
+          <i class="fas fa-users"></i> Join energy traders tracking oil prices daily
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots Section -->
+  <section class="screenshots" id="screenshots">
+    <div class="container">
+      <div class="section-heading">
+        <h2>See It in Action</h2>
+        <p>A beautiful, intuitive interface designed for clarity</p>
+      </div>
+      <div class="screenshots-container">
+        <div class="screenshots-slider">
+          <div class="screenshot-item">
+            <img src="images/screenshot1.png" alt="Oil Prices Live - Main dashboard showing real-time crude oil and energy prices">
+          </div>
+          <div class="screenshot-item">
+            <img src="images/screenshot2.png" alt="Oil Prices Live - Oil spreads comparison with Brent-WTI differential">
+          </div>
+          <div class="screenshot-item">
+            <img src="images/screenshot3.png" alt="Oil Prices Live - Price alerts configuration for energy commodities">
+          </div>
+          <div class="screenshot-item">
+            <img src="images/screenshot4.png" alt="Oil Prices Live - Multi-currency energy price display">
+          </div>
+          <div class="screenshot-item">
+            <img src="images/screenshot5.png" alt="Oil Prices Live - Historical price data and trend analysis">
+          </div>
+          <div class="screenshot-item">
+            <img src="images/screenshot6.png" alt="Oil Prices Live - Focus mode for distraction-free price monitoring">
+          </div>
+          <div class="screenshot-item">
+            <img src="images/screenshot7.png" alt="Oil Prices Live - Natural gas and fuel futures tracking">
+          </div>
+        </div>
+        <div class="screenshots-nav">
+          <div class="screenshot-nav-btn screenshot-prev">
+            <i class="fas fa-arrow-left"></i>
+          </div>
+          <div class="screenshot-nav-btn screenshot-next">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+        <div class="swipe-hint">
+          <i class="fas fa-hand-point-right"></i> Swipe to see more screenshots
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SMS Section -->
+  <div class="container">
+    <section class="sms-section" id="sms">
+      <h3>Get the Download Link via SMS</h3>
+      <p class="sms-intro">Enter your number and we'll text you a direct link to the app</p>
+      <form id="smsForm" class="sms-form" aria-label="SMS app link request form">
+        <input type="tel" name="phone" placeholder="Enter your mobile number" required aria-label="Your mobile phone number">
+        <input type="submit" value="Send Me the App">
+        <p class="consent-text">
+          By clicking "Send Me the App", you consent to receive a one-time SMS message with your app download link. Message & data rates may apply. Reply HELP for help, STOP to cancel. Your consent is not required as a condition to purchase.
+        </p>
+      </form>
+    </section>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="container">
+    <section class="cta-section" id="download">
+      <h2>Start Tracking Energy Prices Now</h2>
+      <p>Download the free app and get real-time crude oil, natural gas, gasoline, and ethanol prices with instant alerts.</p>
+      <a href="https://apps.apple.com/app/apple-store/id6759874542?pt=649248&ct=oilpriceslive&mt=8" class="btn qr-button-top">
+        <i class="fab fa-apple"></i> Download Free
+        <div class="qr-popup-top">
+          <img src="images/qrcode.png" alt="Scan to download Oil Prices Live from App Store">
+          <p>Scan to download</p>
+        </div>
+      </a>
+    </section>
+  </div>
+
+  <!-- Sticky CTA for Mobile -->
+  <div class="sticky-cta">
+    <a href="https://apps.apple.com/app/apple-store/id6759874542?pt=649248&ct=oilpriceslive&mt=8" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-download"></i> Download Free App
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <img src="images/app-icon.png" alt="Oil Prices Live Logo">
+            <h2>Oil Prices Live</h2>
+          </div>
+          <p>Track live crude oil, natural gas, gasoline, and ethanol prices in 28 currencies. Real-time energy prices, smart alerts, and oil spread comparisons for energy traders and investors.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Follow on Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Follow on Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="https://www.privacypolicies.com/generic/">Privacy Policy</a></li>
+            <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Support</h3>
+          <ul>
+            <li>Email: <code>v5cqpsj4e3u4 @ opayq dot com</code></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2026 Patzer LLC. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Screenshots navigation
+    const screenshotsSlider = document.querySelector('.screenshots-slider');
+    const prevButton = document.querySelector('.screenshot-prev');
+    const nextButton = document.querySelector('.screenshot-next');
+
+    prevButton.addEventListener('click', () => {
+      screenshotsSlider.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    nextButton.addEventListener('click', () => {
+      screenshotsSlider.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+    // Scroll to SMS section
+    function scrollToSMS() {
+      const smsSection = document.getElementById('sms');
+      const headerHeight = document.querySelector('header').offsetHeight;
+      const smsPosition = smsSection.getBoundingClientRect().top + window.pageYOffset;
+
+      window.scrollTo({
+        top: smsPosition - headerHeight - 20,
+        behavior: 'smooth'
+      });
+    }
+
+    // SMS Form Submission
+    document.getElementById('smsForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var phone = this.phone.value;
+      fetch('https://sms-send-1082524592245.us-central1.run.app', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone: phone,
+          appName: 'Oil Prices Live',
+          appLink: 'https://apps.apple.com/app/apple-store/id6759874542?pt=649248&ct=smsLink&mt=8'
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('App link sent! Check your phone in a moment.');
+          this.reset();
+        } else {
+          alert('Error sending SMS: ' + data.error);
+        }
+      })
+      .catch(err => console.error(err));
+    });
+
+    // Show/hide sticky CTA
+    window.addEventListener('scroll', function() {
+      const stickyCta = document.querySelector('.sticky-cta');
+      const heroSection = document.getElementById('home');
+
+      if (window.scrollY > heroSection.offsetHeight) {
+        stickyCta.style.display = 'block';
+      } else {
+        stickyCta.style.display = 'none';
+      }
+    });
+
+    // Disable QR popups on touch devices
+    document.addEventListener('DOMContentLoaded', function() {
+      if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        const qrPopups = document.querySelectorAll('.qr-popup, .qr-popup-top');
+        qrPopups.forEach(popup => {
+          popup.style.display = 'none';
+        });
+
+        const qrButtons = document.querySelectorAll('.get-app-btn, .qr-button, .qr-button-top');
+        qrButtons.forEach(button => {
+          button.style.pointerEvents = 'auto';
+        });
+      }
+    });
+  </script>
+  <!-- 100% privacy-first analytics -->
+  <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+</body>
+</html>
